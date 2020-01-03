@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+.imgbox {
+  float: left;
+  text-align: center;
+  font-size: 150%;
+  width: 18%;
+  height: 150px;
+  border: 4px solid black;
+  background-color: red;
+  color: white;
+  margin: 4px;
+  padding: 6px;
+
+ border-radius: 25px;
+}
+
+.imgbox2 {
+
+  float: left;
+  text-align: center;
+  background-color: red;
+  color: white;
+
+
+  font-size: 150%;
+  width: 15%;
+  height:80px;
+  border: 4px solid black;
+  border-radius: 25px;
+  margin: 8px;
+  padding-top: 36px ;
+}
+
+.imgbox3 {
+
+  float: left;
+  text-align: center;
+  background-color: red;
+  color: white;
+
+
+  font-size: 150%;
+  width: 15%;
+  height:80px;
+  border: 4px solid black;
+  border-radius: 25px;
+  margin: 8px;
+  padding-top: 36px ;
+}
+
+.center {
+  //padding-left: 200px;
+  width:25%;
+  border: 4px solid black;
+  background-color: yellow;
+  border-radius: 25px;
+  margin-left: 210px;
+
+}
+
+.body {
+  background-color: grey;
+}
+
+
+
+</style>
+</head>
+
+
+<body class = "body">
+
+
+
+<h1 class="center">Quick Translation Tricks</h1>
+
+<button class = "imgbox" id = "box1" onclick="startGame()">Click for Sentence</button>
+
+<button class = "imgbox" id = "box2" onclick="giveAnswerOne()">Click for Translation</button>
+
+</br>
+
+<p class = "imgbox2" id="demo"></p>
+
+<p class = "imgbox3" id="demo2"></p>
+
+<script>
+
+var ranSentenceIndx = Math.floor(Math.random() * 3);
+
+//var ranGenderIndx = subjNounComboSing[ranSubjComboSingIndx][2];
+
+var subjNounComboSing = [["testis", "teste","m","witness"],["venalicius", "venaliciu","m","slave dealer"],["senex", "sene","m","old man"],["tonsor", "tonsore","m","barber"],["poeta", "poeta","m","poet"],["pictor", "pictore","m","painter"],["taberna", "taberna","f","shop"],["navis", "nave","f","ship"],["leo", "leone","m","lion"],["pestis", "peste","m","pest"],["patronus", "patronu","m","patron"],["cliens", "cliente","m","client"],["argentarius", "argentariu","m","banker"],["coquus", "coquu","m","cook"],["pavo","pavone","m","peacock","peacocks"],["Caecilius","Caeciliu","m","Caecilius",""],["Metella","Metella","f","Metella",""],["Quintus","Quintu","m","Quintus",""],["Grumio","Grumion","m","Grumio",""],["amicus","amicu","m","friend","friends"],["filius","filiu","m","son","sons"],["dominus","dominu","m","master","masters"],["servus","servu","m","slave","slaves"],["ancilla","ancilla","f","maid servant","maid servants"],["mercator","mercatore","m","merchant","merchants"],["canis","cane","m","dog","dogs"],["mater","matre","f","mother","mothers"],["pater","patre","m","father","fathers"]];
+var ranSubjComboSingIndx = Math.floor(Math.random() * subjNounComboSing.length);
+
+var dirObjComboSing = [["res", "re","f","thing"],["anulus", "anulu","m","ring"],["argentaria", "argentaria","f","bankr's stall"],["testis", "teste","m","witness"],["Pantagathus", "Pantagathu","m","Pantagathus"],["Hercules", "Hercule","m","Hercules"],["Syphax", "Syphace","m","Syphax"],["Celer", "Celere","m","Celer"],["pestis", "peste","m","pest"],["patronus", "patronu","m","patron"],["cliens", "cliente","m","client"],["argentarius", "argentariu","m","banker"],["coquus", "coquu","m","cook"],["pavo","pavone","m","peacock","peacocks"],["Caecilius","Caeciliu","m","Caecilius",""],["Metella","Metella","f","Metella",""],["Quintus","Quintu","m","Quintus",""],["Grumio","Grumion","m","Grumio",""],["amicus","amicu","m","friend","friends"],["filius","filiu","m","son","sons"],["dominus","dominu","m","master","masters"],["servus","servu","m","slave","slaves"],["ancilla","ancilla","f","maid servant","maid servants"],["mercator","mercatore","m","merchant","merchants"],["canis","cane","m","dog","dogs"],["mater","matre","f","mother","mothers"],["pater","patre","m","father","fathers"],["forum", "foru","n","marketplace"],["salutatio", "salutatione","f","morning greeting"],["vinum", "vinu","n","wine"],["palla", "palla","f","shawl"],["tunica", "tunica","f","tunic"],["toga", "toga","f","toga"],["mensa", "mensa","f","table"],["pecunia", "pecunia","f","money"],["villa", "villa","f","house"],["cena", "cena","f","dinner"],["ianua", "ianua","f","door"],["insula","insula","f","apartment building"],["cubiculum", "cubiculu","n","bedroom"],["peristylium", "peristyliu","n","outdoor courtyard"],["latrina", "latrina","f","bathroom"],["lararium", "larariu","n","shrine"],["impluvium", "impluviu", "n","shallow pool"],["compluvium", "compluviu","n","roof opening"],["via", "via","f","road"],["culina", "culina", "f", "kitchen"],["hortus", "hortu", "m","garden"],["tablinum", "tablinu", "n","study"],["atrium","atriu","n", "entrance hall"],["triclinium","tricliniu","n", "dining hall"]];
+var ranDirObjComboSingIndx = Math.floor(Math.random() * dirObjComboSing.length);
+
+var areas = [["basilica", "basilica","f","courthouse"],["basilica", "basilica","f","courthouse"],["lingua", "lingua","f","language"],["versus", "versu","m","verse"],["sanguis", "sanguine","m","blood"],["barba", "barba","f","beard"],["novaculum", "novaculum","n","razor"],["fustis", "fuste","m","club"],["pictura", "pictura","f","picture"],["forum", "foru","n","marketplace"],["salutatio", "salutatione","f","morning greeting"],["vinum", "vinu","n","wine"],["palla", "palla","f","shawl"],["tunica", "tunica","f","tunic"],["toga", "toga","f","toga"],["mensa", "mensa","f","table"],["pecunia", "pecunia","f","money"],["villa", "villa","f","house"],["cena", "cena","f","dinner"],["ianua", "ianua","f","door"],["insula","insula","f","apartment building"],["cubiculum", "cubiculu","n","bedroom"],["peristylium", "peristyliu","n","outdoor courtyard"],["latrina", "latrina","f","bathroom"],["lararium", "larariu","n","shrine"],["impluvium", "impluviu", "n","shallow pool"],["compluvium", "compluviu","n","roof opening"],["via", "via","f","road"],["culina", "culina", "f", "kitchen"],["hortus", "hortu", "m","garden"],["tablinum", "tablinu", "n","study"],["atrium","atriu","n", "entrance hall"],["triclinium","tricliniu","n", "dining hall"]];
+ranAreasIndx = Math.floor(Math.random() * areas.length);
+
+var adjective = [["fortis","fortis","forte", "brave"],["doctus","docta","doctum", "skillful"],["pulcher", "pulchra","pulchrum","pretty"],["bonus","bona","bonum", "good"],["scurrilis","scurrilis","scurrile", "dirty"],["occupatus","occupata","occupatum", "busy"],["contentus", "contenta","contentum","satisfied"],["iratus","irata","iratum", "angry"],["paratus", "parata","paratum","prepared"],["laetissimus","laetissima","laetissimum", "happiest"],["optimus","optima","optimum", "best"],["anxius","anxia","anxium", "nervous"],["laetus","laeta","laetum", "happy"]];
+var ranAdjectiveIndx = Math.floor(Math.random() * adjective.length);
+
+var verb = [["discedō","discedit","3", "leaves"],["currō","currit","3", "runs"],["rideō","ridet","2", "laughs"],["reveniō","revenit","4", "returns"],["veniō","venit","4", "comes"],["recitō","recitat","1", "recites"],["fluō","fluit","3", "flows"],["cenō","cenat","1", "dines"],["respondeō","respondet","2", "responds"],["cantō","cantat","1", "sings"],["recumbō","recumbit","3", "reclines"],["exeō","exit","irreg", "leaves"],["surgō","surgit","3", "arises"],["stertō","stertit","3", "snores"],["saliō","salit","4", "jumps"],["clamō","clamat","1", "shouts"],["latrō","latrat","1", "barks"],["stō","stat","1", "stands"],["circumspectō","circumspectat","1", "scans"],["dormiō","dormit","4", "sleeps"],["laborō","laborat","1", "works"],["scribō","scribit","3", "writes"],["bibō","bibit","3", "drinks"],["sedeo","sedet","2", "sits"]];
+var ranVerbIndx = Math.floor(Math.random() * verb.length);
+
+//The following transVerb 3-io were removed: capit and aperit
+var transVerb = [["aperiō","aperit","4","opens"],["capio","capit","3io","takes"],["convincō","convincit","3","convicts"],["probō","probat", "1","proves"],["vendo","vendit", "3","sells"],["debeō","debet","2", "owes"],["tradō","tradit","3", "trades"],["reddō","reddit", "3","returns"],["celō","celat","1", "hides"],["accuso","accusat","1", "accuses"],["pulsō","pulsat","1", "strikes"],["ducō","ducit","3", "leads"],["emō","emit","3", "buys"],["seco","secat","1", "cuts"],["tondeo","tondet","2", "trims"],["verberō","verberat","1", "beats"],["teneō","tenet", "2","holds"],["quaero","quaerit","3", "seeks"],["peto","petit","3", "attacks"],["pingo","pingit","3", "paints"],["salutō","salutat","1", "greets"],["vituperō","vituperat","1", "scolds"],["numerō","numerat","1", "counts"],["exspectō","exspectat","1", "expects"],["coquō","coquit","3", "cooks"],["visitō","visitat","1", "visits"],["consumō","consumit","3", "eats"],["videō","videt","2", "sees"],["delecto","delectat","1", "delights"],["vocō","vocat","1", "calls"],["laudo","laudat","1", "praises"],["gustō","gustat","1", "tastes"],["spectō","spectat","1", "observes"],["intrō","intrat","1", "enters"]];
+var ranTransVerbIndx = Math.floor(Math.random() * transVerb.length);
+
+//removed are Habet and Portat.
+
+var adverbs = [ ["intentē","intently"],["ferociter","fiercely"],["mox","soon"],["quoque","also"],["suaviter","sweetly"],["magnificē","magnificently"]];
+var ranAdverbsIndx = Math.floor(Math.random() * adverbs.length);
+
+var prepPhrase = [["ē tabernā", "out of the shop"],["in sellā", "on the chair"],["ad villam", "to the house"],["prope navem Syriam", "near the Syrian ship"],["in picturā", "in the picture"],["in mensā", "on the table"],["in tablinō","in the study"],["in tricliniō","in the dining room"],["in peristyliō","in the courtyard"],["in culinā","in the kitchen"],["in hortō","in the garden"],["in viā","in the road"],["in atriō","in the main hall"],["in compluviō","on the roof opening"],["in impluviō","in the pool"],["in latrinā","in the bathroom"]];
+var ranPrepPhraseIndx = Math.floor(Math.random() * prepPhrase.length);
+
+var linkingVerb = [["est", "is"]];
+var ranLinkingVerbIndx = Math.floor(Math.random() * linkingVerb.length);
+
+
+
+class Latin {
+  constructor (subject,verb,transVerb,object,prepPhrase,adverbs,linkingVerb,adjective){
+  this.subject = subject;
+  this.verb = verb;
+  this.transVerb = transVerb;
+  this.object = object;
+  this.prepPhrase = prepPhrase;
+  this.adverbs = adverbs;
+  this.linkingVerb = linkingVerb;
+  this.adjective = adjective;
+}
+
+presThirdSing(){
+  if (transVerb[ranTransVerbIndx][2] == "1"){
+  return this.transVerb.slice(0,-1) + "at";
+} else if (transVerb[ranTransVerbIndx][2] == "2"){
+return this.transVerb.slice(0,-1) + "t";
+} else if (transVerb[ranTransVerbIndx][2] == "3"){
+return this.transVerb.slice(0,-1) + "it";
+} else if (transVerb[ranTransVerbIndx][2] == "3io"){
+return this.transVerb.slice(0,-1) + "t";
+} else if (transVerb[ranTransVerbIndx][2] == "4"){
+return this.transVerb.slice(0,-1) + "t";
+}
+}
+
+presThirdSing(){
+  if (transVerb[ranTransVerbIndx][2] == "1"){
+  return this.transVerb.slice(0,-1) + "at";
+} else if (transVerb[ranTransVerbIndx][2] == "2"){
+return this.transVerb.slice(0,-1) + "t";
+} else if (transVerb[ranTransVerbIndx][2] == "3"){
+return this.transVerb.slice(0,-1) + "it";
+} else if (transVerb[ranTransVerbIndx][2] == "3io"){
+return this.transVerb.slice(0,-1) + "t";
+} else if (transVerb[ranTransVerbIndx][2] == "4"){
+return this.transVerb.slice(0,-1) + "t";
+}
+}
+
+presSecondSingTransVerb(){
+  if (transVerb[ranTransVerbIndx][2] == "1"){
+  return this.transVerb.slice(0,-1) + "as";
+} else if (transVerb[ranTransVerbIndx][2] == "2"){
+return this.transVerb.slice(0,-1) + "s";
+} else if (transVerb[ranTransVerbIndx][2] == "3"){
+return this.transVerb.slice(0,-1) + "is";
+} else if (transVerb[ranTransVerbIndx][2] == "3io"){
+return this.transVerb.slice(0,-1) + "s";
+} else if (transVerb[ranTransVerbIndx][2] == "4"){
+return this.transVerb.slice(0,-1) + "s";
+} else if (transVerb[ranTransVerbIndx][2] == "irreg"){
+return this.transVerb.slice(0,-2) + "is";
+}
+}
+
+presSecondSingVerb(){
+  if (verb[ranVerbIndx][2] == "1"){
+  return this.verb.slice(0,-1) + "as";
+} else if (verb[ranVerbIndx][2] == "2"){
+return this.verb.slice(0,-1) + "s";
+} else if (verb[ranVerbIndx][2] == "3"){
+return this.verb.slice(0,-1) + "is";
+} else if (verb[ranVerbIndx][2] == "3io"){
+return this.verb.slice(0,-1) + "s";
+} else if (verb[ranVerbIndx][2] == "4"){
+return this.verb.slice(0,-1) + "s";
+} else if (verb[ranVerbIndx][2] == "irreg"){
+return this.verb.slice(0,-2) + "is";
+}
+
+}
+}
+
+class Translation {
+  constructor (subject, verb,transVerb,object,prepPhrase,adverbs, linkingVerb,adjective){
+    this.subject = subject;
+    this.verb = verb;
+    this.transVerb = transVerb;
+    this.object = object;
+    this.prepPhrase = prepPhrase;
+    this.adverbs = adverbs;
+    this.linkingVerb = linkingVerb;
+    this.adjective = adjective;
+  }
+}
+
+myLatinSentence = new Latin(subjNounComboSing[ranSubjComboSingIndx][0],verb[ranVerbIndx][0],transVerb[ranTransVerbIndx][0],dirObjComboSing[ranDirObjComboSingIndx][1],prepPhrase[ranPrepPhraseIndx][0],adverbs[ranAdverbsIndx][0],linkingVerb[ranLinkingVerbIndx][0],adjective[ranAdjectiveIndx]);
+myTranslation = new Translation(subjNounComboSing[ranSubjComboSingIndx][3],verb[ranVerbIndx][3],transVerb[ranTransVerbIndx][3],dirObjComboSing[ranDirObjComboSingIndx][3],prepPhrase[ranPrepPhraseIndx][1],adverbs[ranAdverbsIndx][1],linkingVerb[ranLinkingVerbIndx][1],adjective[ranAdjectiveIndx][3]);
+
+
+
+function resetSentence(){
+
+  ranSentenceIndx = Math.floor(Math.random() * 3);
+
+  subjNounComboSing = [["pestis", "peste","m","The pest"],["patronus", "patronu","m","The patron"],["cliens", "cliente","m","The client"],["argentarius", "argentariu","m","The banker"],["coquus", "coquu","m","The cook"],["pavo","pavone","m","The peacock","peacocks"],["Caecilius","Caeciliu","m","Caecilius",""],["Metella","Metella","f","Metella",""],["Quintus","Quintu","m","Quintus",""],["Grumio","Grumion","m","Grumio",""],["amicus","amicu","m","The friend","friends"],["filius","filiu","m","The son","sons"],["dominus","dominu","m","The master","masters"],["servus","servu","m","The slave","slaves"],["ancilla","ancilla","f","The maid servant","maid servants"],["mercator","mercatore","m","The merchant","merchants"],["canis","cane","m","The dog","dogs"],["mater","matre","f","The mother","mothers"],["pater","patre","m","The father","fathers"]];
+  ranSubjComboSingIndx = Math.floor(Math.random() * subjNounComboSing.length);
+
+  dirObjComboSing = [["pestis", "peste","m","the pest"],["patronus", "patronu","m","the patron"],["cliens", "cliente","m","the client"],["argentarius", "argentariu","m","the banker"],["coquus", "coquu","m","the cook"],["pavo","pavone","m","the peacock","peacocks"],["Caecilius","Caeciliu","m","Caecilius",""],["Metella","Metella","f","Metella",""],["Quintus","Quintu","m","Quintus",""],["Grumio","Grumion","m","Grumio",""],["amicus","amicu","m","the friend","friends"],["filius","filiu","m","the son","sons"],["dominus","dominu","m","the master","masters"],["servus","servu","m","the slave","slaves"],["ancilla","ancilla","f","the maid servant","maid servants"],["mercator","mercatore","m","the merchant","merchants"],["canis","cane","m","the dog","dogs"],["mater","matre","f","the mother","mothers"],["pater","patre","m","the father","fathers"],["forum", "foru","n","the marketplace"],["salutatio", "salutatione","f","the morning greeting"],["vinum", "vinu","n","the wine"],["palla", "palla","f","the shawl"],["tunica", "tunica","f","the tunic"],["toga", "toga","f","the toga"],["mensa", "mensa","f","the table"],["pecunia", "pecunia","f","the money"],["villa", "villa","f","the house"],["cena", "cena","f","the dinner"],["ianua", "ianua","f","the door"],["insula","insula","f","the apartment building"],["cubiculum", "cubiculu","n","the bedroom"],["peristylium", "peristyliu","n","the outdoor courtyard"],["latrina", "latrina","f","the bathroom"],["lararium", "larariu","n","the shrine"],["impluvium", "impluviu", "n","the shallow pool"],["compluvium", "compluviu","n","the roof opening"],["via", "via","f","the road"],["culina", "culina", "f", "the kitchen"],["hortus", "hortu", "m","the garden"],["tablinum", "tablinu", "n","the study"],["atrium","atriu","n", "the entrance hall"],["triclinium","tricliniu","n", "the dining hall"]];
+  ranDirObjComboSingIndx = Math.floor(Math.random() * dirObjComboSing.length);
+
+
+  areas = [["forum", "foru","n","marketplace"],["salutatio", "salutatione","f","morning greeting"],["vinum", "vinu","n","wine"],["palla", "palla","f","shawl"],["tunica", "tunica","f","tunic"],["toga", "toga","f","toga"],["mensa", "mensa","f","table"],["pecunia", "pecunia","f","money"],["villa", "villa","f","house"],["cena", "cena","f","dinner"],["ianua", "ianua","f","door"],["insula","insula","f","apartment building"],["cubiculum", "cubiculu","n","bedroom"],["peristylium", "peristyliu","n","outdoor courtyard"],["latrina", "latrina","f","bathroom"],["lararium", "larariu","n","shrine"],["impluvium", "impluviu", "n","shallow pool"],["compluvium", "compluviu","n","roof opening"],["via", "via","f","road"],["culina", "culina", "f", "kitchen"],["hortus", "hortu", "m","garden"],["tablinum", "tablinu", "n","study"],["atrium","atriu","n", "entrance hall"],["triclinium","tricliniu","n", "dining hall"]];
+  ranAreasIndx = Math.floor(Math.random() * areas.length);
+
+  adjective = [["perterritus","perterrita","perterritum", "frightened"],["Graecus","Graeca","Graecum", "Greek"],["probus","proba","probum", "honest"],["ebrius","ebria","ebrium", "drunk"],["tuus","tua","tuum", "your"],["meus","mea","meum", "my"],["fortis","fortis","forte", "brave"],["doctus","docta","doctum", "skillful"],["pulcher", "pulchra","pulchrum","pretty"],["bonus","bona","bonum", "good"],["scurrilis","scurrilis","scurrile", "dirty"],["occupatus","occupata","occupatum", "busy"],["contentus", "contenta","contentum","satisfied"],["iratus","irata","iratum", "angry"],["paratus", "parata","paratum","prepared"],["laetissimus","laetissima","laetissimum", "happiest"],["optimus","optima","optimum", "best"],["anxius","anxia","anxium", "nervous"],["laetus","laeta","laetum", "happy"]];
+  ranAdjectiveIndx = Math.floor(Math.random() * adjective.length);
+
+  verb = [["discedō","discedit","3", "leaves"],["currō","currit","3", "runs"],["rideō","ridet","2", "laughs"],["reveniō","revenit","4", "returns"],["veniō","venit","4", "comes"],["recitō","recitat","1", "recites"],["fluō","fluit","3", "flows"],["cenō","cenat","1", "dines"],["respondeō","respondet","2", "responds"],["cantō","cantat","1", "sings"],["recumbō","recumbit","3", "reclines"],["exeō","exit","irreg", "leaves"],["surgō","surgit","3", "arises"],["stertō","stertit","3", "snores"],["saliō","salit","4", "jumps"],["clamō","clamat","1", "shouts"],["latrō","latrat","1", "barks"],["stō","stat","1", "stands"],["circumspectō","circumspectat","1", "scans"],["dormiō","dormit","4", "sleeps"],["laborō","laborat","1", "works"],["scribō","scribit","3", "writes"],["bibō","bibit","3", "drinks"],["sedeo","sedet","2", "sits"]];
+  ranVerbIndx = Math.floor(Math.random() * verb.length);
+
+  //The following transVerb 3-io were removed: capit and aperit
+
+  //The following transVerb 3-io were removed: capit and aperit
+  transVerb = [["aperiō","aperui","4", "opens"],["capio","cēpi","3io", "takes"],["convincō","convincit","3","convicts"],["probō","probat", "1","proves"],["vendo","vendit", "3","sells"],["debeō","debet","2", "owes"],["tradō","tradit","3", "trades"],["reddō","reddit", "3","returns"],["celō","celat","1", "hides"],["accuso","accusat","1", "accuses"],["pulsō","pulsat","1", "strikes"],["ducō","ducit","3", "leads"],["emō","emit","3", "buys"],["seco","secat","1", "cuts"],["tondeo","tondet","2", "trims"],["verberō","verberat","1", "beats"],["teneō","tenet", "2","holds"],["quaero","quaerit","3", "seeks"],["peto","petit","3", "attacks"],["pingo","pingit","3", "paints"],["salutō","salutat","1", "greets"],["vituperō","vituperat","1", "scolds"],["numerō","numerat","1", "counts"],["exspectō","exspectat","1", "expects"],["coquō","coquit","3", "cooks"],["visitō","visitat","1", "visits"],["consumō","consumit","3", "eats"],["videō","videt","2", "sees"],["delecto","delectat","1", "delights"],["vocō","vocat","1", "calls"],["laudo","laudat","1", "praises"],["gustō","gustat","1", "tastes"],["spectō","spectat","1", "observes"],["intrō","intrat","1", "enters"]];
+  ranTransVerbIndx = Math.floor(Math.random() * transVerb.length);
+
+
+  //removed are Habet and Portat.
+
+  adverbs = [["cotidie","everyday"],["hodie","today"],["tamen","however"],["semper","always"],["mox","soon"],["quoque","also"],["suaviter","sweetly"],["magnificē","magnificently"]];
+  ranAdverbsIndx = Math.floor(Math.random() * adverbs.length);
+
+  prepPhrase = [["ad basilicam", "to the courthouse"],["in urbe", "in the city"],["ē tabernā", "out of the shop"],["in mensā", "on the table"],["in tablinō","in the study"],["in tricliniō","in the dining room"],["in peristyliō","in the courtyard"],["in culinā","in the kitchen"],["in hortō","in the garden"],["in viā","in the road"],["in atriō","in the main hall"],["in compluviō","on the roof opening"],["in impluviō","in the pool"],["in latrinā","in the bathroom"]];
+  ranPrepPhraseIndx = Math.floor(Math.random() * prepPhrase.length);
+
+  linkingVerb = [["est", "is"]];
+  ranLinkingVerbIndx = Math.floor(Math.random() * linkingVerb.length);
+
+  class Latin {
+    constructor (subject,verb,transVerb,object,prepPhrase,adverbs,linkingVerb,adjective){
+    this.subject = subject;
+    this.verb = verb;
+    this.transVerb = transVerb;
+    this.object = object;
+    this.prepPhrase = prepPhrase;
+    this.adverbs = adverbs;
+    this.linkingVerb = linkingVerb;
+    this.adjective = adjective;
+  }
+
+    presThirdSing(){
+      if (transVerb[ranTransVerbIndx][2] == "1"){
+      return this.transVerb.slice(0,-1) + "at";
+    } else if (transVerb[ranTransVerbIndx][2] == "2"){
+    return this.transVerb.slice(0,-1) + "t";
+  } else if (transVerb[ranTransVerbIndx][2] == "3"){
+  return this.transVerb.slice(0,-1) + "it";
+} else if (transVerb[ranTransVerbIndx][2] == "3io"){
+return this.transVerb.slice(0,-1) + "t";
+} else if (transVerb[ranTransVerbIndx][2] == "4"){
+return this.transVerb.slice(0,-1) + "t";
+}
+}
+
+presThirdSingVerb(){
+  if (verb[ranVerbIndx][2] == "1"){
+  return this.verb.slice(0,-1) + "at";
+} else if (verb[ranVerbIndx][2] == "2"){
+return this.verb.slice(0,-1) + "t";
+} else if (verb[ranVerbIndx][2] == "3"){
+return this.verb.slice(0,-1) + "it";
+} else if (verb[ranVerbIndx][2] == "3io"){
+return this.verb.slice(0,-1) + "t";
+} else if (verb[ranVerbIndx][2] == "4"){
+return this.verb.slice(0,-1) + "t";
+} else if (verb[ranVerbIndx][2] == "irreg"){
+return this.verb.slice(0,-2) + "it";
+}
+}
+
+presSecondSingTransVerb(){
+  if (transVerb[ranTransVerbIndx][2] == "1"){
+  return this.transVerb.slice(0,-1) + "as";
+} else if (transVerb[ranTransVerbIndx][2] == "2"){
+return this.transVerb.slice(0,-1) + "s";
+} else if (transVerb[ranTransVerbIndx][2] == "3"){
+return this.transVerb.slice(0,-1) + "is";
+} else if (transVerb[ranTransVerbIndx][2] == "3io"){
+return this.transVerb.slice(0,-1) + "s";
+} else if (transVerb[ranTransVerbIndx][2] == "4"){
+return this.transVerb.slice(0,-1) + "s";
+} else if (transVerb[ranTransVerbIndx][2] == "irreg"){
+return this.transVerb.slice(0,-2) + "is";
+}
+}
+
+presSecondSingVerb(){
+  if (verb[ranVerbIndx][2] == "1"){
+  return this.verb.slice(0,-1) + "as";
+} else if (verb[ranVerbIndx][2] == "2"){
+return this.verb.slice(0,-1) + "s";
+} else if (verb[ranVerbIndx][2] == "3"){
+return this.verb.slice(0,-1) + "is";
+} else if (verb[ranVerbIndx][2] == "3io"){
+return this.verb.slice(0,-1) + "s";
+} else if (verb[ranVerbIndx][2] == "4"){
+return this.verb.slice(0,-1) + "s";
+} else if (verb[ranVerbIndx][2] == "irreg"){
+return this.verb.slice(0,-2) + "is";
+}
+
+  }
+  }
+
+  class Translation {
+    constructor (subject, verb,transVerb,object,prepPhrase,adverbs, linkingVerb,adjective){
+      this.subject = subject;
+      this.verb = verb;
+      this.transVerb = transVerb;
+      this.object = object;
+      this.prepPhrase = prepPhrase;
+      this.adverbs = adverbs;
+      this.linkingVerb = linkingVerb;
+      this.adjective = adjective;
+    }
+  }
+
+  myLatinSentence = new Latin(subjNounComboSing[ranSubjComboSingIndx][0],verb[ranVerbIndx][0],transVerb[ranTransVerbIndx][0],dirObjComboSing[ranDirObjComboSingIndx][1],prepPhrase[ranPrepPhraseIndx][0],adverbs[ranAdverbsIndx][0],linkingVerb[ranLinkingVerbIndx][0],adjective[ranAdjectiveIndx]);
+  myTranslation = new Translation(subjNounComboSing[ranSubjComboSingIndx][3],verb[ranVerbIndx][3],transVerb[ranTransVerbIndx][3],dirObjComboSing[ranDirObjComboSingIndx][3],prepPhrase[ranPrepPhraseIndx][1],adverbs[ranAdverbsIndx][1],linkingVerb[ranLinkingVerbIndx][1],adjective[ranAdjectiveIndx][3]);
+
+
+
+
+}
+
+
+
+function hideBox1(){
+  document.getElementById("box1").style.display = "none" ;
+}
+
+function unHideBox1(){
+  document.getElementById("box1").style.display = "block" ;
+}
+
+function hideBox2(){
+  document.getElementById("box2").style.display = "none" ;
+}
+
+function unHideBox2(){
+  document.getElementById("box2").style.display = "block" ;
+}
+
+function hideDemo(){
+  document.getElementById("demo").style.display = "none" ;
+}
+
+function unHideDemo(){
+  document.getElementById("demo").style.display = "block" ;
+}
+function hideDemo2(){
+  document.getElementById("demo2").style.display = "none" ;
+}
+
+function unHideDemo2(){
+  document.getElementById("demo2").style.display = "block" ;
+}
+
+hideBox2();
+hideDemo();
+hideDemo2();
+
+function changeBoxColorsOne(){
+
+  document.getElementById("box2").style.background = "black" ;
+  document.getElementById("box2").style.borderColor = "red" ;
+  document.getElementById("demo").style.background= "red" ;
+  document.getElementById("demo").style.borderColor= "black" ;
+}
+
+function changeBoxColorsTwo(){
+
+  document.getElementById("box1").style.background= "red" ;
+  document.getElementById("box1").style.borderColor= "black" ;
+
+  document.getElementById("demo").style.background= "black" ;
+  document.getElementById("demo").style.borderColor= "red" ;
+
+  document.getElementById("demo2").style.background= "white" ;
+  document.getElementById("demo2").style.borderColor= "black" ;
+  document.getElementById("demo2").style.color= "black" ;
+}
+
+//ranVT2Indx = Math.floor(Math.random() * mixUp2.length);
+
+
+
+
+
+function startGame(){
+
+resetSentence();
+
+if (ranSentenceIndx == 0){
+var latin = myLatinSentence.subject + " " + myLatinSentence.object + "m " + myLatinSentence.prepPhrase + " " + myLatinSentence.presThirdSing();
+} else if (ranSentenceIndx ==1) {
+var latin = myLatinSentence.subject + " " + myLatinSentence.adverbs + " " + myLatinSentence.presThirdSingVerb() + " " + myLatinSentence.prepPhrase ;
+} else if (ranSentenceIndx ==2) {
+  if (dirObjComboSing[ranDirObjComboSingIndx][2] == "m"){
+var latin = "Cur tu " + myLatinSentence.object + "m " + myLatinSentence.presSecondSingTransVerb() + "?";
+} else if (dirObjComboSing[ranDirObjComboSingIndx][2] == "f"){
+var latin = "Ego " + myLatinSentence.object + "m " + myLatinSentence.transVerb + ", sed tu " + myLatinSentence.presSecondSingVerb();
+} else if (dirObjComboSing[ranDirObjComboSingIndx][2] == "n"){
+var latin = "Quis " + myLatinSentence.object + "m " + myLatinSentence.presThirdSing() + "?"
+}
+
+}
+
+
+
+
+    hideBox1();
+    unHideBox2();
+    unHideDemo();
+    hideDemo2();
+    changeBoxColorsOne();
+
+
+document.getElementById("demo").innerHTML = latin;
+
+
+}
+
+function giveAnswerOne(){
+
+if (ranSentenceIndx == 0){
+  var latinTrans = myTranslation.subject + " " + myTranslation.transVerb + " " + myTranslation.object + " " + myTranslation.prepPhrase;
+} else if (ranSentenceIndx == 1){
+  var latinTrans = myTranslation.subject + " " + myTranslation.adverbs + " " + myTranslation.verb + " " + myTranslation.prepPhrase;
+} else if (ranSentenceIndx == 2) {
+  if (dirObjComboSing[ranDirObjComboSingIndx][2] == "m"){
+  var latinTrans = "Why do you " + " " + myLatinSentence.transVerb.slice(0,-1) + " " + myTranslation.object + "?";
+} else if (dirObjComboSing[ranDirObjComboSingIndx][2] == "f"){
+  var latinTrans = "I " + " " + myLatinSentence.transVerb.slice(0,-1) + " " + myTranslation.object + ", but you " + myTranslation.verb.slice(0,-1);
+} else if (dirObjComboSing[ranDirObjComboSingIndx][2] == "n"){
+  var latinTrans = "Who " + myTranslation.transVerb + " " + myTranslation.object + "?";
+}
+}
+ 
+
+  unHideBox1();
+  hideBox2();
+  unHideDemo2();
+  changeBoxColorsTwo();
+
+document.getElementById("demo2").innerHTML = latinTrans;
+
+}
+
+
+
+
+</script>
+
+</body>
+</html>
